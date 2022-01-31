@@ -15,7 +15,7 @@ class ItemsSeeder extends Seeder
     {
         //
         $array = [
-            '{"descripcion":"Harina de maiz 1 KG", "precio":"4.8"}',
+            '{"descripcion":"Harina de maiz 1KG", "precio":"4.8"}',
             '{"descripcion":"Harina de trigo 1KG","precio":"4.6"}',
             '{"descripcion":"Aceite de girasol 1L","precio":"11"}',
             '{"descripcion":"Azucar refinada 1KG","precio":"6.2"}',

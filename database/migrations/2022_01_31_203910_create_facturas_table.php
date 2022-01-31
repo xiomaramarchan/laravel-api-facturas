@@ -13,9 +13,9 @@ class CreateFacturasTable extends Migration
      */
     public function up()
     {
-        Schema::create('facturas_', function (Blueprint $table) {
+        Schema::create('facturas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('numero')->unique(); 
+            $table->integer('numero'); 
             $table->integer("user_id")->unsigned();          
             $table->string('comprador_nombre');
             $table->integer('comprador_nit');
@@ -32,6 +32,6 @@ class CreateFacturasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facturas_');
+        Schema::dropIfExists('facturas');
     }
 }

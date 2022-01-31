@@ -13,7 +13,7 @@ class CreateItemFacturasTable extends Migration
      */
     public function up()
     {
-        Schema::create('item_facturas_', function (Blueprint $table) {
+        Schema::create('item_facturas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("factura_id")->unsigned()->index(); 
             $table->integer("item_id")->unsigned();            
@@ -39,6 +39,6 @@ class CreateItemFacturasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_facturas_');
+        Schema::dropIfExists('item_facturas');
     }
 }

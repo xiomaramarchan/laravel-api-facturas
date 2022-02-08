@@ -8,8 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Factura extends Model
 {
     use HasFactory;
-    
+
+  
     public function items(){
         return $this->hasMany("App\Models\ItemFactura");
     }
+   
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+    
 }

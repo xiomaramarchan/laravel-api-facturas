@@ -1,0 +1,15 @@
+1- Ejecutar 
+    #composer install para instalar las dependencias necesarias del framework
+
+2- Ejecutar el comando: 
+    > php artisan migrate para crear las tablas
+
+3- Ejecutar el comando: 
+    > php artisan db:seed para cargar los items o productos.
+
+4- Ejecutar el comando: 
+    > php artisan passport:install para crear cuentas de clientes
+    este comando es necesario para que se pueda iniciar sesion 
+
+5- Ejecutar el comando 
+   > php artisan serve para levantar el server local

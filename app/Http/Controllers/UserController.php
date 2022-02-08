@@ -50,7 +50,7 @@ class UserController extends Controller
 
 
     //REGISTRO DE USUARIO
-    public function registro(Request $request)
+    public function signUp(Request $request)
     {   
          
         date_default_timezone_set('America/Caracas');

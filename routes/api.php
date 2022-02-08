@@ -13,22 +13,54 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
-Route::get('items', [ItemController::class, 'obtenerTodosItems']);
-Route::post('login', 'UserController@login');
-Route::post('signup', 'UserController@signUp');
+use App\Http\Controllers\FacturaController;
 
-Route::middleware('auth:api')->group( function () {
-    Route::get('logout', 'UserController@logout');
-    //Llamada al metodo para crear la factura
-    Route::post('crear-factura', 'FacturaController@crearFactura');
-    //Llamada al método para editar la factura
-    Route::put('editar-factura/{id}', 'FacturaController@editarFactura');
-    //Llamda al método para mostrar las facturas Generadas
-    Route::get('facturas', 'FacturaController@mostrarFacturasGeneradas');
-    //Llamada al método para mostrar la factura de acuerdo al id
-    Route::get('factura/{id}', 'FacturaController@mostrarFacturaId');
+
+
+Route::get('items', [ItemController::class, 'obtenerTodosItems']);
+
+Route::post('login', [UserController::class, 'login']);
+Route::post('signup', [UserController::class, 'signUp']);
+
+
+Route::group([
+    'prefix' => ''
+], function () { // AQUI ESTARAN TODAS LAS RUTAS QUE NO NECESTAN AUTENTICACION
+
+    //LISTO TODOS LOS PRODUCTOS DISPONIBLES PARA SU VENTA
+    Route::get('items', [ItemController::class, 'obtenerTodosItems']);
+
+    Route::post('login', [UserController::class, 'login']);
+    Route::post('signup', [UserController::class, 'signUp']);
+       
+    //acceso a rutas con autenticación
+Route::group([
+    'middleware' => 'auth:api',
+    'prefix' => 'auth'
+  ], function() { 
+       //Llamada al metodo para crear salir de la sesion
+
+      Route::get('logout', [UserController::class, 'logout']); 
+
+      //Llamada al metodo para crear la factura
+      Route::post('crear-factura', [FacturaController::class, 'crearFactura']);
+
+      //Llamada al método para editar la factura
+      Route::post('editar-factura/{id}', [FacturaController::class, 'editarFactura']);     
+
+      //Llamda al método para mostrar las facturas Generadas .      
+      
+      Route::get('facturas', [FacturaController::class, 'mostrarFacturasGeneradas']);   
+
+      
+
+      //Llamada al método para mostrar la factura de acuerdo al id
+      Route::get('factura/{id}', [FacturaController::class, 'mostrarFacturaId']);        
+         
     
 });
-  
+   
+});       
+
